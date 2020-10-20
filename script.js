@@ -1,23 +1,71 @@
 "use strict";
-const str = "test";
-const arr = [1, 3, 6];
-console.log(str.toUpperCase());
-console.log(str.toLowerCase());
+let numberOfFilms;
 
-const fruit = "Some fruit";
+function start() {
+    numberOfFilms = +prompt(" Сколько фильмов вы уже посмотрели?", "");
 
-console.log(fruit.indexOf("fruit"));
+    while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
+        numberOfFilms = +prompt(" Сколько фильмов вы уже посмотрели?", "");
+
+    }
+}
+
+start();
+
+const personalMovieDB = { 
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    privat: false
+}; 
+
+function WriteYourGenres () {
+    for (let j = 1; j < 4; j++) {
+        let genre = prompt(`Ваш любимый жанр под номером ${j}`, "");
+        personalMovieDB.genres[j - 1] = genre;
+    }
+}
+WriteYourGenres(); 
+
+function showMyDB(hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
+    }
+}
+showMyDB(personalMovieDB.privat);
 
 
-const logg = "Hello world";
+function rememberMyFilms() {
+    for (let i = 0; i < 2; i++) {
+    const a = prompt("Один из последних просмотренных фильмов?", ""),
+          b = prompt("На сколько оцените его?", "");
 
-console.log(logg.slice(6, 11));
+          if (a != null && b != null && a !='' && b != null && a.length < 50) {
+            personalMovieDB.movies[a] = b;
+            console.log("Done");
+          } else {
+              console.log("Error");
+              i--;
+          }
+    }
+}
 
-console.log(logg.substring(6, 11));
+rememberMyFilms();
 
-const num = 12.2;
-console.log(Math.round(num)); 
+function detectPersonalLevel(){
+    if (personalMovieDB.count < 10) {
+        console.log("Просмотрено довольно мало фильмов");
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+        console.log("Ты класный зритель");
+    } else if (personalMovieDB.count >= 30) {
+        console.log("Вы киноман");
+    } else {
+        console.log("Error");
+    }
+}
 
-const test = "12.2px";
-console.log(parseInt(test)); 
-console.log(parseFloat(test)); 
+
+detectPersonalLevel();
+
+console.log(personalMovieDB);
