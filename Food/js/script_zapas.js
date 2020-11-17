@@ -1,18 +1,18 @@
 "use strict";
 
 
-const log = function (a, b, ...rest) {
-    console.log(a, b, rest);
-};
+// const log = function (a, b, ...rest) {
+//     console.log(a, b, rest);
+// };
 
-log('basik', 'rest', 'operator', 'usage');
+// log('basik', 'rest', 'operator', 'usage');
 
-function calcODouble (number, basis = 2) {
-    console.log(number * basis);
+// function calcODouble (number, basis = 2) {
+//     console.log(number * basis);
 
-}
+// }
 
-calcODouble(3);
+// calcODouble(3);
 
 
 
@@ -143,5 +143,4 @@ calcODouble(3);
 
 // console.log(ivan);
 // console.log(alex);
-
 

@@ -222,10 +222,20 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     forms.forEach(item => {
-        postData(item);
+        bindpostData(item);
     });
 
-    function postData(form) {
+    const PostData = async (url, data) => {
+        const res = await fetch(url, {
+            method: "POST",
+            headers: {'Content-type': 'aplication/json',
+            },
+            body: data
+        });
+        return await res.json();
+    };
+
+    function bindpostData(form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -246,12 +256,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 object[key] = value;
             });
 
-            fetch('server.php', {
-                method: "POST",
-                headers: {'Content-type': 'aplication/json',
-                },
-                body: JSON.stringify(object)
-            })
+            PostData('server.php', JSON.stringify(object))
             .then(data => data.text())
             .then(data => {
                 console.log(data);
@@ -295,3 +300,5 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(res => console.log(res));
 
 }); 
+
+
